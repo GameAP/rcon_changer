@@ -123,8 +123,8 @@ class Rcon_changer extends MX_Controller {
 				$this->servers->server_data['server_ip'],
 				$this->servers->server_data['server_port'],
 				$this->servers->server_data['rcon'], 
-				$this->servers->servers->server_data['engine'],
-				$this->servers->servers->server_data['engine_version']
+				$this->servers->server_data['engine'],
+				$this->servers->server_data['engine_version']
 			);
 
 			$new_rcon = $this->input->post('rcon_password');
@@ -135,7 +135,7 @@ class Rcon_changer extends MX_Controller {
 				
 				// Редактирование данных в БД
 				$sql_data = array('rcon' => $new_rcon);
-				$this->servers->edit_game_server($this->server_data['id'], $sql_data);
+				$this->servers->edit_game_server($this->servers->server_data['id'], $sql_data);
 				
 				if ($this->input->post('restart_server')) {
 					// Перезагрузка сервера
@@ -147,7 +147,7 @@ class Rcon_changer extends MX_Controller {
 				$this->_show_message(lang('rcon_changer_success'), site_url('admin/server_control/main/' . $server_id), lang('next'));
 				
 				// Данные в лог
-				$log_data['log_data'] = "OldPassword: {$this->server_data['rcon']} NewPassword: {$new_rcon}";
+				$log_data['log_data'] = "OldPassword: {$this->servers->server_data['rcon']} NewPassword: {$new_rcon}";
 				
 			} catch (Exception $e) {
 				$log_data['msg'] 		= lang('rcon_changer_fail');
