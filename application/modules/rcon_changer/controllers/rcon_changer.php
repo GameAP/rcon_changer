@@ -108,7 +108,7 @@ class Rcon_changer extends MX_Controller {
 		$local_tpl = array();
 		$local_tpl['server_id'] = $server_id;
 		
-		$this->form_validation->set_rules('rcon_password', lang('rcon_changer_password'), 'trim|required|min_length[6]|max_length[64]|xss_clean');
+		$this->form_validation->set_rules('rcon_password', lang('rcon_changer_password'), 'trim|required|alpha_numeric|min_length[6]|max_length[64]|xss_clean');
 		
 		if ($this->form_validation->run() == false) {
 			
